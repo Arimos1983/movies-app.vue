@@ -1,17 +1,22 @@
 <template>
-  <div>
-    <ul v-for="movie in movies" :key="movie.id" class="list-group">
-        <li>{{movie.title}}</li>
-        <li>{{movie.director}}</li>
-        <li>{{movie.imageUrl}}</li>
-      </ul>
-  </div>
+    <div>
+        
+        <div class="container">
+            <ul class="list-group">
+                <li class="list-group-item">Title: {{movie.title}}</li>
+                <li class="list-group-item">Director: {{movie.director}}</li>
+                <li class="list-group-item">{{movie.imageUrl}}</li>
+                <li class="list-group-item">Relesed: {{movie.releaseDate}}</li>
+                <li class="list-group-item">Genre: {{movie.genre}}</li><br>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
   name: 'MovieRow',
-  props: ['movies'],
+  props: ['movie']
   
 }
 </script>

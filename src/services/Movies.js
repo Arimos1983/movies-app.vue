@@ -8,6 +8,7 @@ export default class Movies {
 
     getAll(){
         return axios.get('movies')
+        // return new Promise((resolve)=>)
     }
 
 }
