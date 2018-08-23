@@ -57,8 +57,11 @@ export default {
 
     addSelectedMovies(id)
     {
-      if(!this.selectedMovies.includes(id))
-      this.selectedMovies.push(id);
+      if(!this.selectedMovies.includes(id)){
+      this.selectedMovies.push(id);}
+      else{
+        this.selectedMovies.splice(this.selectedMovies.indexOf(id),1)
+      }
     },
     selectAll()
     {
@@ -72,7 +75,7 @@ export default {
     {  
     return this.selectedMovies.find(movie => {return movie === id});
     },
-    sortAsc(sortStatus)
+    sortAsc()
     { 
       
       this.movies.sort(function(a, b){
