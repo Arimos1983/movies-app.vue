@@ -4,7 +4,9 @@
         <label>Search Movies:</label>
         <input type="text" @input="setSearchTerm" placeholder="Search Movies"/>
     </div>
-    <MovieRow v-for="movie in filteredMovies" :key="movie.id" :movie="movie" />
+    <MovieRow v-for="movie in filteredMovies" :key="movie.id" :movie="movie"  />
+    <p v-if="filteredMovies.length === 0" >{{error}}</p>
+    
   </div>
 </template>
 
@@ -21,16 +23,18 @@ export default {
   data(){
     return {
       movies: [],
-      searchTerm: ""
+      searchTerm: "",
+      error: "No movies under that name"
     }
   },
 
   computed: {
 
       filteredMovies(){
-    
+
            return this.movies.filter(movie => movie.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0)
-      }
+      },
+      
   },
 
   methods: {
