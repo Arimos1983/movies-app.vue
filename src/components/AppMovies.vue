@@ -4,6 +4,10 @@
         <label>Search Movies:</label>
         <input type="text" @input="setSearchTerm" placeholder="Search Movies"/>
     </div>
+    <div>
+      <button class="btn btn-primary" @click="sortAsc(sortStatus = true)">Sort asc</button>
+      <button class="btn btn-primary" @click="sortDes(sortStatus = true)">Sort des</button>
+    </div>
     <div v-if="selectedMovies.length > 0">
       <h3>You have selected {{selectedMovies.length}} movies</h3>
     </div>
@@ -30,7 +34,8 @@ export default {
       selectedMovies: [],
       movies: [],
       searchTerm: "",
-      error: "No movies under that name"
+      error: "No movies under that name",
+      
     }
   },
 
@@ -66,6 +71,25 @@ export default {
     find(id) 
     {  
     return this.selectedMovies.find(movie => {return movie === id});
+    },
+    sortAsc(sortStatus)
+    { 
+      
+      this.movies.sort(function(a, b){
+      if(a.title < b.title) return -1;
+      if(a.title > b.title) return 1;
+      return 0;
+      })
+    },  
+    sortDes()
+    {
+
+      this.movies.sort(function(a, b){
+      if(a.title > b.title) return -1;
+      if(a.title < b.title) return 1;
+      return 0;
+      })
+      
     }
 
   },
