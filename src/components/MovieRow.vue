@@ -9,6 +9,7 @@
                 <li class="list-group-item">Relesed: {{movie.releaseDate}}</li>
                 <li class="list-group-item">Genre: {{movie.genre}}</li><br>
             </ul>
+            <button @click="select">Select</button>
         </div>
     </div>
 </template>
@@ -16,7 +17,14 @@
 <script>
 export default {
   name: 'MovieRow',
-  props: ['movie']
+  props: ['movie'],
+  methods:{
+
+      select(){
+          this.$emit("selectedMovie", this.movie.id);
+      }
+
+  }
   
 }
 </script>
