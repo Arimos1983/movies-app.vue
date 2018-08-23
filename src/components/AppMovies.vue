@@ -4,10 +4,12 @@
         <label>Search Movies:</label>
         <input type="text" @input="setSearchTerm" placeholder="Search Movies"/>
     </div>
-    <div>
-      <p>You have selected {{selectedMovies.length}} movies</p>
+    <div v-if="selectedMovies.length > 0">
+      <h3>You have selected {{selectedMovies.length}} movies</h3>
     </div>
-    <MovieRow v-for="movie in filteredMovies" :key="movie.id" :movie="movie"  @selectedMovie="addSelectedMovies" :class="{'colorRed': find(movie.id)}" />
+    <button class="btn btn-primary" @click="selectAll">Select All</button>
+    <button class="btn btn-primary" @click="deselectAll">Deselect All</button>
+    <MovieRow v-for="movie in filteredMovies" :key="movie.id" :movie="movie"  @selectedMovie="addSelectedMovies" :class="{'color': find(movie.id)}" />
     <p v-if="filteredMovies.length === 0" >{{error}}</p>
     
   </div>
@@ -50,9 +52,17 @@ export default {
 
     addSelectedMovies(id)
     {
+      if(!this.selectedMovies.includes(id))
       this.selectedMovies.push(id);
     },
-
+    selectAll()
+    {
+      this.selectedMovies = this.movies.map(movie => movie.id);
+    },
+    deselectAll()
+    {
+      this.selectedMovies = [];
+    },
     find(id) 
     {  
     return this.selectedMovies.find(movie => {return movie === id});
@@ -76,7 +86,7 @@ export default {
 </script>
 
 <style>
-.colorRed {
+.color {
   background-color: lawngreen;
 }
 

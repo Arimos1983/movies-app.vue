@@ -9,7 +9,7 @@
                 <li class="list-group-item">Relesed: {{movie.releaseDate}}</li>
                 <li class="list-group-item">Genre: {{movie.genre}}</li><br>
             </ul>
-            <button @click="select">Select</button>
+            <button class="btn btn-primary" @click="select">Select</button>
         </div>
     </div>
 </template>
