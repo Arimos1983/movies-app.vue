@@ -15,6 +15,10 @@
     <button class="btn btn-primary" @click="deselectAll">Deselect All</button>
     <MovieRow v-for="movie in filteredMovies" :key="movie.id" :movie="movie"  @selectedMovie="addSelectedMovies" :class="{'color': find(movie.id)}" />
     <p v-if="filteredMovies.length === 0" >{{error}}</p>
+
+    <small>Page {{pageNumber +1 }} of {{numberOfPages }}</small><br>
+    <button class="btn btn-outline-info  btn-sm" style="width:80px" @click="previousPage" :disabled='pageNumber < 1'>previous</button>
+    <button class="btn btn-outline-info  btn-sm" style="width:80px" @click="nextPage" :disabled='pageNumber >= numberOfPages -1'>next</button>
     
   </div>
 </template>
@@ -35,6 +39,8 @@ export default {
       movies: [],
       searchTerm: "",
       error: "No movies under that name",
+      pageNumber: 0,
+      postPerPage: 2,
       
     }
   },
@@ -43,13 +49,35 @@ export default {
 
       filteredMovies(){
 
-           return this.movies.filter(movie => movie.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0)
+         let listData = this.movies.filter(movie => movie.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0)
+         const start = this.pageNumber * this.postPerPage
+         const end = start + this.postPerPage
+         return listData.slice(start, end)
       },
+      numberOfPages(){
+        console.log(Math.ceil(this.movies.length / 2))
+        return Math.ceil(this.movies.length / 2)
+        
+      },
+      // paginateData()
+      // {
+      //   const start = this.pageNumber * this.postPerPage
+      //   end = start + this.postPerPage
+      //   return this.listData.slice(start, end)
+      // }
       
   },
 
   methods:
   {
+    nextPage()
+    {
+      this.pageNumber++
+    },
+    previousPage()
+    {
+      this.pageNumber--
+    },
     setSearchTerm(event) 
     {
       this.searchTerm = event.target.value;
@@ -59,7 +87,8 @@ export default {
     {
       if(!this.selectedMovies.includes(id)){
       this.selectedMovies.push(id);}
-      else{
+      else
+      {
         this.selectedMovies.splice(this.selectedMovies.indexOf(id),1)
       }
     },
