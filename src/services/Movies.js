@@ -10,6 +10,9 @@ export default class Movies {
         return axios.get('movies')
         
     }
+    addMovie(movie){
+        return axios.post('movies', movie)
+    }
 
 }
 

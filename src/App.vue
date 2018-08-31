@@ -2,6 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-light bg-dark">
       <router-link to="/movies">Movies</router-link>
+      <router-link to="/add">Add Movies</router-link>
     </nav>
     <img alt="Vue logo" src="./assets/logo.png">
     <router-view></router-view>
