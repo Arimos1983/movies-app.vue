@@ -5,6 +5,7 @@ import Movies from './components/AppMovies'
 import AddMovie from './components/AddMovie'
 import Login from './components/AppLogin'
 import Register from './components/AppRegister'
+import SingleMovie from './components/SingleMovie'
 import { auth } from './services/Auth'
 
 
@@ -15,6 +16,7 @@ Vue.use(VueRouter)
 const routes = [
   {path: '/', redirect: '/movies' },
   {path: '/movies', component: Movies,name: "movies", meta: { require_auth: true}},
+  {path: '/movies/:id', component: SingleMovie, name: "SingleMovie", meta: { require_auth: true}, props: true },
   {path: '/add', component: AddMovie, meta: { require_auth: true} },
   {path: '/login', component: Login, name: "login", meta: { require_auth: false}},
   {path: '/register', component: Register, meta: { require_auth: false } }

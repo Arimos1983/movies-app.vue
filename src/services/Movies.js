@@ -13,6 +13,9 @@ export default class Movies {
     addMovie(movie){
         return axios.post('movies', movie)
     }
+    getMovie($id){
+        return axios.get(`movies/${$id}`)
+    }
 
 }
 

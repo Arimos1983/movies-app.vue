@@ -3,7 +3,7 @@
         
         <div class="container">
             <ul class="list-group">
-                <li class="list-group-item">Title: {{movie.title}}</li>
+                <router-link :to="{name: 'SingleMovie', params:{id: movie.id}}">Title: {{movie.title}}</router-link>
                 <li class="list-group-item">Director: {{movie.director}}</li>
                 <li class="list-group-item">{{movie.imageUrl}}</li>
                 <li class="list-group-item">Relesed: {{movie.releaseDate}}</li>

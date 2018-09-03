@@ -10,7 +10,7 @@
       </div>
 
       <div v-else>
-        <button  @click="logout">Logout</button>
+        <button class="btn btn-link"  @click="logout">Logout</button>
       </div>
 
     </nav>
