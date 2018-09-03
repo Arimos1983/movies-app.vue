@@ -5,11 +5,12 @@
       <router-link to="/add">Add Movies</router-link>
 
       <div v-if="!isAuthenticated()">
-        <router-link to="/login">Login</router-link>
+        <router-link to="/login">Login</router-link><br>
+        <router-link to="/register">Register</router-link>
       </div>
 
       <div v-else>
-        <button @click="logout">Logout</button>
+        <button  @click="logout">Logout</button>
       </div>
 
     </nav>

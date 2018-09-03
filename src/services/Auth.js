@@ -16,6 +16,9 @@ export default class AuthService {
         
         
     }
+    register(newUser){
+        return axios.post('auth/register',newUser);
+    }
 
     setAxiosDefaultAuthorizationHeader(){
         const token = localStorage.getItem("token");
@@ -29,6 +32,7 @@ export default class AuthService {
     }
 
     logout() {
+        axios.post('auth/logout')
         localStorage.removeItem("token");
         delete axios.defaults.headers.common["Authorization"];
         
