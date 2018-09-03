@@ -38,7 +38,7 @@ export default {
       login(){
           auth.login(this.email,this.password)
           .then(() => {
-          this.$router.push('/movies')
+          this.$router.push("/movies")
         })
         .catch(error => this.errors = error.response.data.error)
       }

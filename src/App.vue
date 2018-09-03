@@ -3,7 +3,15 @@
     <nav class="navbar navbar-light bg-dark">
       <router-link to="/movies">Movies</router-link>
       <router-link to="/add">Add Movies</router-link>
-      <router-link to="/login">Login</router-link>
+
+      <div v-if="!isAuthenticated()">
+        <router-link to="/login">Login</router-link>
+      </div>
+
+      <div v-else>
+        <button @click="logout">Logout</button>
+      </div>
+
     </nav>
     <img alt="Vue logo" src="./assets/logo.png">
     <router-view></router-view>
@@ -12,11 +20,22 @@
 
 <script>
 
-
+import { auth } from './services/Auth'
 export default {
   name: 'app',
   components: {
     
+  },
+  data(){
+    return{
+      isAuthenticated: auth.isAuthenticated
+    }
+  },
+  methods:{
+    logout(){
+      auth.logout()
+      this.$router.push({name: 'login'})
+    }
   }
 }
 </script>

@@ -13,7 +13,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {path: '/', redirect: '/movies' },
-  {path: '/movies', component: Movies, meta: { require_auth: true}},
+  {path: '/movies', component: Movies,name: "movies", meta: { require_auth: true}},
   {path: '/add', component: AddMovie, meta: { require_auth: true} },
   {path: '/login', component: Login, name: "login", meta: { require_auth: false}}
   
@@ -31,7 +31,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.require_auth)
   {
     if (auth.isAuthenticated())
-    {
+    { 
       return next();
     } 
     else 
@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
   }
   else
   {
-    if(auth.isAuthenticated)
+    if(auth.isAuthenticated())
     {
       return next(false)
     }
